@@ -137,21 +137,6 @@ export default class Time extends React.Component {
       event.key = "Enter";
     }
 
-    if (
-      (event.key === "ArrowUp" || event.key === "ArrowLeft") &&
-      event.target.previousSibling
-    ) {
-      event.preventDefault();
-      event.target.previousSibling.focus();
-    }
-    if (
-      (event.key === "ArrowDown" || event.key === "ArrowRight") &&
-      event.target.nextSibling
-    ) {
-      event.preventDefault();
-      event.target.nextSibling.focus();
-    }
-
     if (event.key === "Enter") {
       this.handleClick(time);
     }
