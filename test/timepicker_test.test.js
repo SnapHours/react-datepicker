@@ -24,7 +24,7 @@ describe("TimePicker", () => {
 
     setManually("February 28, 2018 4:45 PM");
     expect(formatDate(onChangeMoment, "MMMM d, yyyy p")).toBe(
-      "February 28, 2018 4:45 PM",
+      "February 28, 2018 4:45 PM"
     );
   });
 
@@ -48,7 +48,7 @@ describe("TimePicker", () => {
 
   it("should not close datepicker after time clicked when shouldCloseOnSelect is false", () => {
     var datePicker = TestUtils.renderIntoDocument(
-      <DatePicker shouldCloseOnSelect={false} showTimeSelect />,
+      <DatePicker shouldCloseOnSelect={false} showTimeSelect />
     );
     var dateInput = datePicker.input;
     TestUtils.Simulate.focus(findDOMNode(dateInput));
@@ -69,22 +69,22 @@ describe("TimePicker", () => {
         timeClassName={handleTimeColors}
         open
         focus
-      />,
+      />
     );
     let redItems = TestUtils.scryRenderedDOMComponentsWithClass(
       timePicker,
-      "react-datepicker__time-list-item red",
+      "react-datepicker__time-list-item red"
     );
     let greenItems = TestUtils.scryRenderedDOMComponentsWithClass(
       timePicker,
-      "react-datepicker__time-list-item green",
+      "react-datepicker__time-list-item green"
     );
 
     expect(
       redItems !== undefined &&
         redItems.length === 24 &&
         greenItems !== undefined &&
-        greenItems.length === 24,
+        greenItems.length === 24
     ).toBe(true);
   });
 
@@ -129,102 +129,24 @@ describe("TimePicker", () => {
 
   it("should not contain the time only classname in header by default", () => {
     const timePicker = TestUtils.renderIntoDocument(
-      <DatePicker open showTimeSelect />,
+      <DatePicker open showTimeSelect />
     );
     const header = TestUtils.scryRenderedDOMComponentsWithClass(
       timePicker,
-      "react-datepicker__header--time--only",
+      "react-datepicker__header--time--only"
     );
     expect(header).toHaveLength(0);
   });
 
   it("should contain the time only classname in header if enabled", () => {
     const timePicker = TestUtils.renderIntoDocument(
-      <DatePicker open showTimeSelect showTimeSelectOnly />,
+      <DatePicker open showTimeSelect showTimeSelectOnly />
     );
     const header = TestUtils.scryRenderedDOMComponentsWithClass(
       timePicker,
-      "react-datepicker__header--time--only",
+      "react-datepicker__header--time--only"
     );
     expect(header).toHaveLength(1);
-  });
-
-  it("should select time when Enter is pressed", () => {
-    renderDatePicker("February 28, 2018 4:43 PM");
-    TestUtils.Simulate.focus(findDOMNode(datePicker.input));
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey("Enter"));
-    expect(getInputString()).toBe("February 28, 2018 12:30 AM");
-  });
-
-  it("should select time when Space is pressed", () => {
-    renderDatePicker("February 28, 2018 4:43 PM");
-    TestUtils.Simulate.focus(findDOMNode(datePicker.input));
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey(" "));
-    expect(getInputString()).toBe("February 28, 2018 12:30 AM");
-  });
-
-  it("should return focus to input once time is selected", (done) => {
-    document.body.appendChild(div); // So we can check the dom later for activeElement
-    renderDatePicker("February 28, 2018 4:43 PM");
-    const dateInput = findDOMNode(datePicker.input);
-    TestUtils.Simulate.focus(dateInput);
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey("Enter"));
-
-    defer(() => {
-      expect(document.activeElement).toBe(dateInput);
-      done();
-    });
-  });
-
-  it("should not select time when Escape is pressed", () => {
-    renderDatePicker("February 28, 2018 4:43 PM");
-    TestUtils.Simulate.focus(findDOMNode(datePicker.input));
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey("Escape"));
-    expect(getInputString()).toBe("February 28, 2018 4:43 PM");
-  });
-
-  it("should call the onKeyDown handler on key Escape press", () => {
-    const onKeyDownSpy = jest.fn();
-    renderDatePicker("February 28, 2018 4:43 PM", {
-      onKeyDown: onKeyDownSpy,
-    });
-    TestUtils.Simulate.focus(findDOMNode(datePicker.input));
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey("Escape"));
-    expect(onKeyDownSpy).toHaveBeenCalledTimes(1);
-  });
-
-  it("should call the onKeyDown handler on key Enter press", () => {
-    const onKeyDownSpy = jest.fn();
-    renderDatePicker("February 28, 2018 4:43 PM", {
-      onKeyDown: onKeyDownSpy,
-    });
-    TestUtils.Simulate.focus(findDOMNode(datePicker.input));
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey("Enter"));
-    expect(onKeyDownSpy).toHaveBeenCalledTimes(1);
-  });
-
-  it("should call the onKeyDown handler on key Space press", () => {
-    const onKeyDownSpy = jest.fn();
-    renderDatePicker("February 28, 2018 4:43 PM", {
-      onKeyDown: onKeyDownSpy,
-    });
-    TestUtils.Simulate.focus(findDOMNode(datePicker.input));
-    const time = TestUtils.findRenderedComponentWithType(datePicker, Time);
-    const lis = TestUtils.scryRenderedDOMComponentsWithTag(time, "li");
-    TestUtils.Simulate.keyDown(lis[1], getKey(" "));
-    expect(onKeyDownSpy).toHaveBeenCalledTimes(1);
   });
 
   function setManually(string) {
@@ -250,7 +172,7 @@ describe("TimePicker", () => {
         showTimeSelect
         {...props}
       />,
-      div,
+      div
     );
   }
 

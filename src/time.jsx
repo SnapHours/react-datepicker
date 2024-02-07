@@ -46,7 +46,6 @@ export default class Time extends React.Component {
     monthRef: PropTypes.object,
     timeCaption: PropTypes.string,
     injectTimes: PropTypes.array,
-    handleOnKeyDown: PropTypes.func,
     locale: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.shape({ locale: PropTypes.object }),
@@ -78,7 +77,7 @@ export default class Time extends React.Component {
           this.props.monthRef
             ? this.props.monthRef.clientHeight - this.header.clientHeight
             : this.list.clientHeight,
-          this.centerLi,
+          this.centerLi
         );
     });
   };
@@ -131,18 +130,6 @@ export default class Time extends React.Component {
     return classes.join(" ");
   };
 
-  handleOnKeyDown = (event, time) => {
-    if (event.key === " ") {
-      event.preventDefault();
-      event.key = "Enter";
-    }
-
-    if (event.key === "Enter") {
-      this.handleClick(time);
-    }
-    this.props.handleOnKeyDown(event);
-  };
-
   renderTimes = () => {
     let times = [];
     const format = this.props.format ? this.props.format : "p";
@@ -171,7 +158,7 @@ export default class Time extends React.Component {
           currentTime,
           i,
           intervals,
-          sortedInjectTimes,
+          sortedInjectTimes
         );
         times = times.concat(timesToInject);
       }
@@ -195,9 +182,6 @@ export default class Time extends React.Component {
             if (time === timeToFocus) {
               this.centerLi = li;
             }
-          }}
-          onKeyDown={(ev) => {
-            this.handleOnKeyDown(ev, time);
           }}
           tabIndex={time === timeToFocus ? 0 : -1}
           role="option"

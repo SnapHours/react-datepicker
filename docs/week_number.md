@@ -6,7 +6,6 @@
 | `containerRef`               | `union(func\|shape)` |               |             |
 | `date` (required)            | `instanceOfDate`     |               |             |
 | `disabledKeyboardNavigation` | `bool`               |               |             |
-| `handleOnKeyDown`            | `func`               |               |             |
 | `inline`                     | `bool`               |               |             |
 | `onClick`                    | `func`               |               |             |
 | `preSelection`               | `instanceOfDate`     |               |             |

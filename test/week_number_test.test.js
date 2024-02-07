@@ -15,7 +15,7 @@ describe("WeekNumber", () => {
       const weekNumber = 1;
       shallowWeekNumber = renderWeekNumber(weekNumber);
       expect(shallowWeekNumber.hasClass("react-datepicker__week-number")).toBe(
-        true,
+        true
       );
       expect(shallowWeekNumber.text()).toBe(weekNumber + "");
     });
@@ -23,7 +23,7 @@ describe("WeekNumber", () => {
     it("should handle onClick function", () => {
       const onClickMock = jest.fn();
       const shallowWeekNumber = shallow(
-        <WeekNumber weekNumber={1} onClick={onClickMock} />,
+        <WeekNumber weekNumber={1} onClick={onClickMock} />
       );
       shallowWeekNumber.instance().handleClick({});
       expect(onClickMock).toHaveBeenCalledTimes(1);
@@ -32,10 +32,10 @@ describe("WeekNumber", () => {
     it("should have an aria-label containing the provided prefix", () => {
       const ariaLabelPrefix = "A prefix in my native language";
       shallowWeekNumber = shallow(
-        <WeekNumber day={1} ariaLabelPrefix={ariaLabelPrefix} />,
+        <WeekNumber day={1} ariaLabelPrefix={ariaLabelPrefix} />
       );
       expect(
-        shallowWeekNumber.html().indexOf(`aria-label="${ariaLabelPrefix}`),
+        shallowWeekNumber.html().indexOf(`aria-label="${ariaLabelPrefix}`)
       ).not.toBe(-1);
     });
   });
@@ -73,33 +73,6 @@ describe("WeekNumber", () => {
       shallowWeekNumber.simulate("click", eventMock);
       expect(onClickMock).toHaveBeenCalledWith(eventMock);
     });
-
-    describe("handleOnKeyDown", () => {
-      const handleOnKeyDownMock = jest.fn((event) => {
-        if (event.key === " ") {
-          event.preventDefault();
-          event.key = "Enter";
-        }
-      });
-
-      it("should change space key to Enter", () => {
-        const eventSpace = {
-          key: " ",
-          preventDefault: jest.fn(),
-        };
-        handleOnKeyDownMock(eventSpace);
-        expect(eventSpace.preventDefault).toHaveBeenCalled();
-        expect(eventSpace.key).toBe("Enter");
-      });
-
-      it("should not change any other key", () => {
-        const eventA = {
-          key: "a",
-        };
-        handleOnKeyDownMock(eventA);
-        expect(eventA.key).toBe("a");
-      });
-    });
   });
 
   describe("Utility Functions", () => {
@@ -111,7 +84,7 @@ describe("WeekNumber", () => {
     describe("getTabIndex", () => {
       it("should return 0 if showWeekPicker and showWeekNumber are true and the day is selected", () => {
         const shallowWeekNumber = shallow(
-          <WeekNumber showWeekPicker showWeekNumber selected={new Date()} />,
+          <WeekNumber showWeekPicker showWeekNumber selected={new Date()} />
         );
         const instance = shallowWeekNumber.instance();
         instance.isKeyboardSelected = jest.fn(() => true);
@@ -124,7 +97,7 @@ describe("WeekNumber", () => {
 
       it("should return 0 if showWeekPicker and showWeekNumber are true and the day is the preSelection", () => {
         const shallowWeekNumber = shallow(
-          <WeekNumber showWeekPicker showWeekNumber selected={new Date()} />,
+          <WeekNumber showWeekPicker showWeekNumber selected={new Date()} />
         );
         const instance = shallowWeekNumber.instance();
         instance.isKeyboardSelected = jest.fn(() => true);
@@ -136,7 +109,7 @@ describe("WeekNumber", () => {
 
       it("should return -1 if showWeekPicker is false", () => {
         const shallowWeekNumber = shallow(
-          <WeekNumber showWeekNumber selected={new Date()} />,
+          <WeekNumber showWeekNumber selected={new Date()} />
         );
         const instance = shallowWeekNumber.instance();
         expect(instance.getTabIndex()).toBe(-1);
@@ -144,7 +117,7 @@ describe("WeekNumber", () => {
 
       it("should return -1 if showWeekNumber is false", () => {
         const shallowWeekNumber = shallow(
-          <WeekNumber showWeekPicker selected={new Date()} />,
+          <WeekNumber showWeekPicker selected={new Date()} />
         );
         const instance = shallowWeekNumber.instance();
         expect(instance.getTabIndex()).toBe(-1);
@@ -152,7 +125,7 @@ describe("WeekNumber", () => {
 
       it("should return -1 if the day is not selected or the preSelection", () => {
         const shallowWeekNumber = shallow(
-          <WeekNumber showWeekPicker showWeekNumber selected={new Date()} />,
+          <WeekNumber showWeekPicker showWeekNumber selected={new Date()} />
         );
         const instance = shallowWeekNumber.instance();
         instance.isKeyboardSelected = jest.fn(() => false);
@@ -167,19 +140,17 @@ describe("WeekNumber", () => {
       it("should have the class 'react-datepicker__week-number'", () => {
         const weekNumber = 1;
         const shallowWeekNumber = shallow(
-          <WeekNumber weekNumber={weekNumber} />,
+          <WeekNumber weekNumber={weekNumber} />
         );
         expect(
-          shallowWeekNumber.hasClass("react-datepicker__week-number"),
+          shallowWeekNumber.hasClass("react-datepicker__week-number")
         ).toBe(true);
       });
 
       it("should have the class 'react-datepicker__week-number--clickable' if onClick is defined", () => {
         const shallowWeekNumber = shallow(<WeekNumber onClick={() => {}} />);
         expect(
-          shallowWeekNumber.hasClass(
-            "react-datepicker__week-number--clickable",
-          ),
+          shallowWeekNumber.hasClass("react-datepicker__week-number--clickable")
         ).toBe(true);
       });
 
@@ -190,10 +161,10 @@ describe("WeekNumber", () => {
             date={currentWeekNumber}
             selected={currentWeekNumber}
             preSelection={currentWeekNumber}
-          />,
+          />
         );
         expect(
-          shallowWeekNumber.hasClass("react-datepicker__week-number--selected"),
+          shallowWeekNumber.hasClass("react-datepicker__week-number--selected")
         ).toBe(true);
       });
 
@@ -205,10 +176,10 @@ describe("WeekNumber", () => {
             date={currentWeekNumber}
             selected={currentWeekNumber}
             preSelection={preSelection}
-          />,
+          />
         );
         expect(
-          shallowWeekNumber.hasClass("react-datepicker__week-number--selected"),
+          shallowWeekNumber.hasClass("react-datepicker__week-number--selected")
         ).toBe(true);
       });
 
@@ -220,15 +191,15 @@ describe("WeekNumber", () => {
             date={currentWeekNumber}
             selected={selected}
             preSelection={currentWeekNumber}
-          />,
+          />
         );
         expect(
-          shallowWeekNumber.hasClass("react-datepicker__week-number--selected"),
+          shallowWeekNumber.hasClass("react-datepicker__week-number--selected")
         ).toBe(false);
         expect(
           shallowWeekNumber.hasClass(
-            "react-datepicker__week-number--keyboard-selected",
-          ),
+            "react-datepicker__week-number--keyboard-selected"
+          )
         ).toBe(true);
       });
 
@@ -241,15 +212,15 @@ describe("WeekNumber", () => {
             date={currentWeekNumber}
             selected={selected}
             preSelection={preSelection}
-          />,
+          />
         );
         expect(
-          shallowWeekNumber.hasClass("react-datepicker__week-number--selected"),
+          shallowWeekNumber.hasClass("react-datepicker__week-number--selected")
         ).toBe(false);
         expect(
           shallowWeekNumber.hasClass(
-            "react-datepicker__week-number--keyboard-selected",
-          ),
+            "react-datepicker__week-number--keyboard-selected"
+          )
         ).toBe(false);
       });
     });

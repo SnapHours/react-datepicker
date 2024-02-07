@@ -5,7 +5,6 @@
 | `excludeTimes`       | `array`                |               |             |
 | `filterTime`         | `func`                 |               |             |
 | `format`             | `string`               |               |             |
-| `handleOnKeyDown`    | `func`                 |               |             |
 | `includeTimes`       | `array`                |               |             |
 | `injectTimes`        | `array`                |               |             |
 | `intervals`          | `number`               | `30`          |             |

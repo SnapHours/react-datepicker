@@ -8,7 +8,6 @@
 | `popperComponent`  | `element`                      |                  |             |
 | `popperContainer`  | `func`                         |                  |             |
 | `popperModifiers`  | `arrayOf[object Object]`       | `[]`             |             |
-| `popperOnKeyDown`  | `func`                         |                  |             |
 | `popperPlacement`  | `enumpopperPlacementPositions` | `"bottom-start"` |             |
 | `popperProps`      | `object`                       | `{}`             |             |
 | `portalHost`       | `instanceOfShadowRoot`         |                  |             |

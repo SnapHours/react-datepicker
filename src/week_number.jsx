@@ -22,7 +22,6 @@ export default class WeekNumber extends React.Component {
     disabledKeyboardNavigation: PropTypes.bool,
     inline: PropTypes.bool,
     shouldFocusDayInline: PropTypes.bool,
-    handleOnKeyDown: PropTypes.func,
     containerRef: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
@@ -43,16 +42,6 @@ export default class WeekNumber extends React.Component {
     if (this.props.onClick) {
       this.props.onClick(event);
     }
-  };
-
-  handleOnKeyDown = (event) => {
-    const eventKey = event.key;
-    if (eventKey === " ") {
-      event.preventDefault();
-      event.key = "Enter";
-    }
-
-    this.props.handleOnKeyDown(event);
   };
 
   isKeyboardSelected = () =>
@@ -98,7 +87,7 @@ export default class WeekNumber extends React.Component {
         this.props.containerRef.current.contains(document.activeElement) &&
         document.activeElement &&
         document.activeElement.classList.contains(
-          "react-datepicker__week-number",
+          "react-datepicker__week-number"
         )
       ) {
         shouldFocusWeekNumber = true;
@@ -118,7 +107,7 @@ export default class WeekNumber extends React.Component {
       "react-datepicker__week-number--clickable": !!onClick,
       "react-datepicker__week-number--selected": isSameDay(
         this.props.date,
-        this.props.selected,
+        this.props.selected
       ),
       "react-datepicker__week-number--keyboard-selected":
         this.isKeyboardSelected(),
@@ -129,7 +118,6 @@ export default class WeekNumber extends React.Component {
         className={classnames(weekNumberClasses)}
         aria-label={`${ariaLabelPrefix} ${this.props.weekNumber}`}
         onClick={this.handleClick}
-        onKeyDown={this.handleOnKeyDown}
         tabIndex={this.getTabIndex()}
       >
         {weekNumber}

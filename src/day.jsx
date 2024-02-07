@@ -44,7 +44,6 @@ export default class Day extends React.Component {
     selectsDisabledDaysInRange: PropTypes.bool,
     startDate: PropTypes.instanceOf(Date),
     renderDayContents: PropTypes.func,
-    handleOnKeyDown: PropTypes.func,
     containerRef: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({ current: PropTypes.object }),
@@ -81,16 +80,6 @@ export default class Day extends React.Component {
     }
   };
 
-  handleOnKeyDown = (event) => {
-    const eventKey = event.key;
-    if (eventKey === " ") {
-      event.preventDefault();
-      event.key = "Enter";
-    }
-
-    this.props.handleOnKeyDown(event);
-  };
-
   isSameDay = (other) => isSameDay(this.props.day, other);
 
   isKeyboardSelected = () =>
@@ -112,8 +101,8 @@ export default class Day extends React.Component {
       getStartOfWeek(
         this.props.day,
         this.props.locale,
-        this.props.calendarStartDay,
-      ),
+        this.props.calendarStartDay
+      )
     );
 
   isSameWeek = (other) =>
@@ -123,8 +112,8 @@ export default class Day extends React.Component {
       getStartOfWeek(
         this.props.day,
         this.props.locale,
-        this.props.calendarStartDay,
-      ),
+        this.props.calendarStartDay
+      )
     );
 
   getHighLightedClass = () => {
@@ -306,7 +295,7 @@ export default class Day extends React.Component {
           this.isAfterMonth() || this.isBeforeMonth(),
       },
       this.getHighLightedClass("react-datepicker__day--highlighted"),
-      this.getHolidaysClass(),
+      this.getHolidaysClass()
     );
   };
 
@@ -337,9 +326,9 @@ export default class Day extends React.Component {
       titles.push(
         excludeDates
           ?.filter((excludeDate) =>
-            isSameDay(excludeDate.date ? excludeDate.date : excludeDate, day),
+            isSameDay(excludeDate.date ? excludeDate.date : excludeDate, day)
           )
-          .map((excludeDate) => excludeDate.message),
+          .map((excludeDate) => excludeDate.message)
       );
     }
     return titles.join(", ");
@@ -419,7 +408,6 @@ export default class Day extends React.Component {
     <div
       ref={this.dayEl}
       className={this.getClassNames(this.props.day)}
-      onKeyDown={this.handleOnKeyDown}
       onClick={this.handleClick}
       onMouseEnter={this.handleMouseEnter}
       tabIndex={this.getTabIndex()}

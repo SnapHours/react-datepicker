@@ -23,7 +23,6 @@ export class PopperComponent extends React.Component {
     popperProps: PropTypes.object,
     targetComponent: PropTypes.element,
     enableTabLoop: PropTypes.bool,
-    popperOnKeyDown: PropTypes.func,
     showArrow: PropTypes.bool,
     portalId: PropTypes.string,
     portalHost: PropTypes.instanceOf(ShadowRoot),
@@ -37,7 +36,6 @@ export class PopperComponent extends React.Component {
       popperComponent,
       targetComponent,
       enableTabLoop,
-      popperOnKeyDown,
       portalId,
       portalHost,
       popperProps,
@@ -55,7 +53,6 @@ export class PopperComponent extends React.Component {
             style={popperProps.floatingStyles}
             className={classes}
             data-placement={popperProps.placement}
-            onKeyDown={popperOnKeyDown}
           >
             {popperComponent}
             {showArrow && (
@@ -89,7 +86,7 @@ export class PopperComponent extends React.Component {
 
     const wrapperClasses = classnames(
       "react-datepicker-wrapper",
-      wrapperClassName,
+      wrapperClassName
     );
 
     return (

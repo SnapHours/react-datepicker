@@ -36,7 +36,7 @@ export default class Year extends React.Component {
   }
 
   YEAR_REFS = [...Array(this.props.yearItemNumber)].map(() =>
-    React.createRef(),
+    React.createRef()
   );
 
   isDisabled = (date) => utils.isDayDisabled(date, this.props);
@@ -155,30 +155,6 @@ export default class Year extends React.Component {
     this.handleYearClick(utils.getStartOfYear(utils.setYear(date, y)), e);
   };
 
-  onYearKeyDown = (e, y) => {
-    const { key } = e;
-    if (!this.props.disabledKeyboardNavigation) {
-      switch (key) {
-        case "Enter":
-          this.onYearClick(e, y);
-          this.props.setPreSelection(this.props.selected);
-          break;
-        case "ArrowRight":
-          this.handleYearNavigation(
-            y + 1,
-            utils.addYears(this.props.preSelection, 1),
-          );
-          break;
-        case "ArrowLeft":
-          this.handleYearNavigation(
-            y - 1,
-            utils.subYears(this.props.preSelection, 1),
-          );
-          break;
-      }
-    }
-  };
-
   getYearClassNames = (y) => {
     const {
       minDate,
@@ -234,7 +210,7 @@ export default class Year extends React.Component {
       this.props;
     const { startPeriod, endPeriod } = utils.getYearsPeriod(
       date,
-      yearItemNumber,
+      yearItemNumber
     );
 
     for (let y = startPeriod; y <= endPeriod; y++) {
@@ -244,9 +220,6 @@ export default class Year extends React.Component {
           onClick={(ev) => {
             this.onYearClick(ev, y);
           }}
-          onKeyDown={(ev) => {
-            this.onYearKeyDown(ev, y);
-          }}
           tabIndex={this.getYearTabIndex(y)}
           className={this.getYearClassNames(y)}
           onMouseEnter={(ev) => onYearMouseEnter(ev, y)}
@@ -255,7 +228,7 @@ export default class Year extends React.Component {
           aria-current={this.isCurrentYear(y) ? "date" : undefined}
         >
           {this.getYearContent(y)}
-        </div>,
+        </div>
       );
     }
 

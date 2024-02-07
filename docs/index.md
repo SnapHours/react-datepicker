@@ -78,7 +78,6 @@
 | `onFocus`                       | `func`                         | `() {}`                    |             |
 | `onInputClick`                  | `func`                         | `() {}`                    |             |
 | `onInputError`                  | `func`                         | `() {}`                    |             |
-| `onKeyDown`                     | `func`                         | `() {}`                    |             |
 | `onMonthChange`                 | `func`                         | `() {}`                    |             |
 | `onMonthMouseLeave`             | `func`                         |                            |             |
 | `onSelect`                      | `func`                         | `() {}`                    |             |

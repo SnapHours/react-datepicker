@@ -25,7 +25,7 @@ export default class Week extends React.Component {
       PropTypes.shape({
         start: PropTypes.instanceOf(Date),
         end: PropTypes.instanceOf(Date),
-      }),
+      })
     ),
     filterDate: PropTypes.func,
     formatWeekNumber: PropTypes.func,
@@ -59,7 +59,6 @@ export default class Week extends React.Component {
     setOpen: PropTypes.func,
     shouldCloseOnSelect: PropTypes.bool,
     renderDayContents: PropTypes.func,
-    handleOnKeyDown: PropTypes.func,
     isInputFocused: PropTypes.bool,
     containerRef: PropTypes.oneOfType([
       PropTypes.func,
@@ -89,7 +88,7 @@ export default class Week extends React.Component {
       const startOfWeek = getStartOfWeek(
         day,
         this.props.locale,
-        this.props.calendarStartDay,
+        this.props.calendarStartDay
       );
       this.handleDayClick(startOfWeek, event);
     }
@@ -109,7 +108,7 @@ export default class Week extends React.Component {
     const startOfWeek = getStartOfWeek(
       this.props.day,
       this.props.locale,
-      this.props.calendarStartDay,
+      this.props.calendarStartDay
     );
     const days = [];
     const weekNumber = this.formatWeekNumber(startOfWeek);
@@ -130,10 +129,9 @@ export default class Week extends React.Component {
           showWeekPicker={this.props.showWeekPicker}
           showWeekNumber={this.props.showWeekNumber}
           disabledKeyboardNavigation={this.props.disabledKeyboardNavigation}
-          handleOnKeyDown={this.props.handleOnKeyDown}
           isInputFocused={this.props.isInputFocused}
           containerRef={this.props.containerRef}
-        />,
+        />
       );
     }
     return days.concat(
@@ -171,7 +169,6 @@ export default class Week extends React.Component {
             dayClassName={this.props.dayClassName}
             renderDayContents={this.props.renderDayContents}
             disabledKeyboardNavigation={this.props.disabledKeyboardNavigation}
-            handleOnKeyDown={this.props.handleOnKeyDown}
             isInputFocused={this.props.isInputFocused}
             containerRef={this.props.containerRef}
             inline={this.props.inline}
@@ -183,7 +180,7 @@ export default class Week extends React.Component {
             locale={this.props.locale}
           />
         );
-      }),
+      })
     );
   };
 
@@ -191,7 +188,7 @@ export default class Week extends React.Component {
     getStartOfWeek(
       this.props.day,
       this.props.locale,
-      this.props.calendarStartDay,
+      this.props.calendarStartDay
     );
 
   isKeyboardSelected = () =>
@@ -204,7 +201,7 @@ export default class Week extends React.Component {
       "react-datepicker__week": true,
       "react-datepicker__week--selected": isSameDay(
         this.startOfWeek(),
-        this.props.selected,
+        this.props.selected
       ),
       "react-datepicker__week--keyboard-selected": this.isKeyboardSelected(),
     };
